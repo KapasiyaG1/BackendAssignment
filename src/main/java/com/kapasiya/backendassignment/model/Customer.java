@@ -5,11 +5,12 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Customer
-{
+@Table(name = "customers")
+public class Customer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long customerID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String customerName;
     private String email;
@@ -20,52 +21,23 @@ public class Customer
     private List<PurchaseOrder> purchaseOrders;
 
     @OneToMany(mappedBy = "customer")
-    private List<ShippingDetails> shipmentDetails;
+    private List<ShippingDetails> shippingDetails;
 
-    public Customer()
-    {
-
-    }
-
-    public List<PurchaseOrder> getPurchaseOrders() {
-        return purchaseOrders;
-    }
-
-    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
-        this.purchaseOrders = purchaseOrders;
-    }
-
-    public List<ShippingDetails> getShipmentDetails() {
-        return shipmentDetails;
-    }
-
-    public void setShipmentDetails(List<ShippingDetails> shipmentDetails) {
-        this.shipmentDetails = shipmentDetails;
-    }
-
-    public Customer(String customerName, String email, String mobileNumber, String city, List<PurchaseOrder> purchaseOrders, List<ShippingDetails> shipmentDetails) {
+    public Customer(String customerName, String email, String mobileNumber, String city, List<PurchaseOrder> purchaseOrders, List<ShippingDetails> shippingDetails) {
         this.customerName = customerName;
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.city = city;
         this.purchaseOrders = purchaseOrders;
-        this.shipmentDetails = shipmentDetails;
+        this.shippingDetails = shippingDetails;
     }
 
-    public Customer(String customerName, String email, String mobileNumber, String city)
-    {
-        this.customerName = customerName;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
-        this.city = city;
+    public Long getId() {
+        return id;
     }
 
-    public Long getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(Long customerID) {
-        this.customerID = customerID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCustomerName() {
@@ -98,5 +70,26 @@ public class Customer
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+    }
+
+    public List<ShippingDetails> getShippingDetails() {
+        return shippingDetails;
+    }
+
+    public void setShippingDetails(List<ShippingDetails> shippingDetails) {
+        this.shippingDetails = shippingDetails;
+    }
+
+    public Customer()
+    {
+
     }
 }

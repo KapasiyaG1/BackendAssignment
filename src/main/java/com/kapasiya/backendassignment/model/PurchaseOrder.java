@@ -5,7 +5,9 @@ import com.kapasiya.backendassignment.model.Customer;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "purchase_orders")
 public class PurchaseOrder {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,22 +18,9 @@ public class PurchaseOrder {
     private double mrp;
 
     @ManyToOne
-    @JoinColumn(name = "customerID")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
-    public PurchaseOrder()
-    {
-
-    }
-
-    public PurchaseOrder(String productName, int quantity, double pricing, double mrp, Customer customer) {
-        this.productName = productName;
-        this.quantity = quantity;
-        this.pricing = pricing;
-        this.mrp = mrp;
-        this.customer = customer;
-    }
 
     public Long getId() {
         return id;
@@ -78,6 +67,19 @@ public class PurchaseOrder {
     }
 
     public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public PurchaseOrder()
+    {
+
+    }
+
+    public PurchaseOrder(String productName, int quantity, double pricing, double mrp, Customer customer) {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.pricing = pricing;
+        this.mrp = mrp;
         this.customer = customer;
     }
 }

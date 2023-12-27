@@ -2,7 +2,7 @@ package com.kapasiya.backendassignment.servicesImp;
 
 import com.kapasiya.backendassignment.model.Customer;
 import com.kapasiya.backendassignment.model.ShippingDetails;
-import com.kapasiya.backendassignment.repository.Repository;
+import com.kapasiya.backendassignment.repository.CustomerRepository;
 import com.kapasiya.backendassignment.repository.ShippingDetailsRepository;
 import com.kapasiya.backendassignment.sevicesDefinition.ShippingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ public class ShippingDetailsServiceImpl implements ShippingDetailsService
 {
 
     private final ShippingDetailsRepository shippingDetailsRepository;
-    private final Repository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public ShippingDetailsServiceImpl(ShippingDetailsRepository shippingDetailsRepository,Repository customerRepository) {
+    public ShippingDetailsServiceImpl(ShippingDetailsRepository shippingDetailsRepository, CustomerRepository customerRepository) {
         this.shippingDetailsRepository = shippingDetailsRepository;
         this.customerRepository = customerRepository;
     }

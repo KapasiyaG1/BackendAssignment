@@ -2,7 +2,7 @@ package com.kapasiya.backendassignment.controller;
 
 
 import com.kapasiya.backendassignment.model.Customer;
-import com.kapasiya.backendassignment.servicesImp.CustomerService;
+import com.kapasiya.backendassignment.sevicesDefinition.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,22 +16,26 @@ public class CustomerController
     CustomerService service;
 
     public Customer addCustomer(@RequestBody Customer customer)
+
     {
         return service.addCustomer(customer);
     }
 
     @Autowired
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService)
+    {
         this.service = customerService;
     }
 
     @GetMapping("/by-shipping-city")
-    public List<Customer> getCustomersByShippingCity(@RequestParam String city) {
-        return service.getCustomersByShippingCity(city);
+    public List<Customer> getCustomersByShippingCity(@RequestParam String city)
+    {
+        return service.getCustomersWithShipmentByCity(city);
     }
 
     @GetMapping("/with-purchase-orders")
     public List<Customer> getCustomersWithPurchaseOrders() {
+        
         return service.getCustomersWithPurchaseOrders();
     }
 }

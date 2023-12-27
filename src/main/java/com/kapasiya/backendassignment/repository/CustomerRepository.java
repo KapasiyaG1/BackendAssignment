@@ -2,12 +2,9 @@ package com.kapasiya.backendassignment.repository;
 
 import com.kapasiya.backendassignment.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
-public interface Repository extends JpaRepository<Customer,Long>
+public interface CustomerRepository extends JpaRepository<Customer, Long>
 {
-    List<Customer> findByShippingDetailsList_City(String city);
+    List<Customer> findByShippingDetails_City(String city);
 }
-
-

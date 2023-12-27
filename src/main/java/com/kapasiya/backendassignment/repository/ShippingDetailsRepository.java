@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ShippingDetailsRepository extends JpaRepository<ShippingDetails, Long>
-{
+public interface ShippingDetailsRepository extends JpaRepository<ShippingDetails, Long> {
     List<ShippingDetails> findByCustomer(Customer customer);
 }

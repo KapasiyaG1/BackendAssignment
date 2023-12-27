@@ -1,35 +1,30 @@
 package com.kapasiya.backendassignment.servicesImp;
 
-import com.kapasiya.backendassignment.model.Customer;
 import com.kapasiya.backendassignment.model.PurchaseOrder;
 import com.kapasiya.backendassignment.repository.PurchaseOrderRepository;
-import com.kapasiya.backendassignment.repository.Repository;
-import com.kapasiya.backendassignment.sevicesDefinition.PurchaseOrderServiceDef;
+import com.kapasiya.backendassignment.sevicesDefinition.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-public class PurchaseOrderServiceImpl implements PurchaseOrderServiceDef
-{
+@Service
+public class PurchaseOrderServiceImpl implements PurchaseOrderService {
+    @Override
+    public List<PurchaseOrder> getPurchaseOrdersByCustomerId(Long customerId) {
+        return null;
+    }
+
     private final PurchaseOrderRepository purchaseOrderRepository;
-    private final Repository customerRepository;
 
     @Autowired
-    public PurchaseOrderServiceImpl(
-            PurchaseOrderRepository purchaseOrderRepository,
-            Repository customerRepository
-    ) {
+    public PurchaseOrderServiceImpl(PurchaseOrderRepository purchaseOrderRepository) {
         this.purchaseOrderRepository = purchaseOrderRepository;
-        this.customerRepository = customerRepository;
     }
 
     @Override
     public PurchaseOrder createPurchaseOrder(PurchaseOrder purchaseOrder) {
-        // Validate pricing against MRP
-        if (purchaseOrder.getPricing() > purchaseOrder.getMrp()) {
-            throw new IllegalArgumentException("Pricing cannot be greater than MRP");
-        }
-
         return purchaseOrderRepository.save(purchaseOrder);
     }
 
@@ -39,11 +34,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderServiceDef
     }
 
     @Override
-    public List<PurchaseOrder> getPurchaseOrdersByCustomerId(Long customerId) {
-        // Assuming you have a customer repository to fetch customer details
-        Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid customer ID"));
-
-        return purchaseOrderRepository.findByCustomer(customer);
+    public Optional<PurchaseOrder> getPurchaseOrderById(Long purchaseOrderId) {
+        return purchaseOrderRepository.findById(purchaseOrderId);
     }
 }

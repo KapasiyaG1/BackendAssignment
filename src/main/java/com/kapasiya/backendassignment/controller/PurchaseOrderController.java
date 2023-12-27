@@ -33,7 +33,7 @@ public class PurchaseOrderController {
     @GetMapping("/by-customer/{customerId}")
     public List<PurchaseOrder> getPurchaseOrdersByCustomer(@PathVariable Long customerId) {
         Customer customer = new Customer();
-        customer.setCustomerID(customerId);
+        customer.setId(customerId);
         return purchaseOrderRepository.findByCustomer(customer);
     }
 }

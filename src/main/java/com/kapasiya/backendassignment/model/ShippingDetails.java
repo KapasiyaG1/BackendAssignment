@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "shipping_details")
 public class ShippingDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,25 +16,16 @@ public class ShippingDetails {
     private String pincode;
 
     @ManyToOne
-    @JoinColumn(name = "purchase_order_id")
-    private PurchaseOrder purchaseOrder;
-
-    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "purchase_order_id")
+    private PurchaseOrder purchaseOrder;
 
     public ShippingDetails()
     {
 
-    }
-
-    public ShippingDetails(String address, String city, String pincode, PurchaseOrder purchaseOrder, Customer customer) {
-        this.address = address;
-        this.city = city;
-        this.pincode = pincode;
-        this.purchaseOrder = purchaseOrder;
-        this.customer = customer;
     }
 
     public Long getId() {
@@ -68,6 +60,14 @@ public class ShippingDetails {
         this.pincode = pincode;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public PurchaseOrder getPurchaseOrder() {
         return purchaseOrder;
     }
@@ -76,11 +76,11 @@ public class ShippingDetails {
         this.purchaseOrder = purchaseOrder;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
+    public ShippingDetails(String address, String city, String pincode, Customer customer, PurchaseOrder purchaseOrder) {
+        this.address = address;
+        this.city = city;
+        this.pincode = pincode;
         this.customer = customer;
+        this.purchaseOrder = purchaseOrder;
     }
 }
