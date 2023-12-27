@@ -6,15 +6,27 @@ import com.kapasiya.backendassignment.sevicesDefinition.ServicesDef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService implements ServicesDef
 {
     @Autowired
     private Repository repo;
 
+    @Autowired
+    public CustomerService(Repository customerRepository) {
+        this.repo = customerRepository;
+    }
+
 
     @Override
     public Customer addCustomer(Customer customer) {
         return repo.save(customer);
+    }
+
+    @Override
+    public List<Customer> getCustomersByShippingCity(String city) {
+        return repo.findByShippingDetailsList_City(city);
     }
 }
