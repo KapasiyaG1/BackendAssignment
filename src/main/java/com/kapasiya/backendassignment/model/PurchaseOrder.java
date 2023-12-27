@@ -1,4 +1,4 @@
-package com.kapasiya.backendassignment.controller;
+package com.kapasiya.backendassignment.model;
 
 
 import com.kapasiya.backendassignment.model.Customer;
@@ -16,7 +16,7 @@ public class PurchaseOrder {
     private double mrp;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customerID")
     private Customer customer;
 
 
