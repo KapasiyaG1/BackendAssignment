@@ -1,9 +1,8 @@
 package com.kapasiya.backendassignment.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Customer
@@ -17,9 +16,40 @@ public class Customer
     private String mobileNumber;
     private String city;
 
+    @OneToMany(mappedBy = "customer")
+    private List<PurchaseOrder> purchaseOrders;
+
+    @OneToMany(mappedBy = "customer")
+    private List<ShippingDetails> shipmentDetails;
+
     public Customer()
     {
 
+    }
+
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+    }
+
+    public List<ShippingDetails> getShipmentDetails() {
+        return shipmentDetails;
+    }
+
+    public void setShipmentDetails(List<ShippingDetails> shipmentDetails) {
+        this.shipmentDetails = shipmentDetails;
+    }
+
+    public Customer(String customerName, String email, String mobileNumber, String city, List<PurchaseOrder> purchaseOrders, List<ShippingDetails> shipmentDetails) {
+        this.customerName = customerName;
+        this.email = email;
+        this.mobileNumber = mobileNumber;
+        this.city = city;
+        this.purchaseOrders = purchaseOrders;
+        this.shipmentDetails = shipmentDetails;
     }
 
     public Customer(String customerName, String email, String mobileNumber, String city)
