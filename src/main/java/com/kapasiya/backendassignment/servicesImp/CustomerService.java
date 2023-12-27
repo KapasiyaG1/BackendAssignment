@@ -25,8 +25,14 @@ public class CustomerService implements ServicesDef
         return repo.save(customer);
     }
 
+
     @Override
     public List<Customer> getCustomersByShippingCity(String city) {
         return repo.findByShippingDetailsList_City(city);
+    }
+
+    @Override
+    public List<Customer> getCustomersWithPurchaseOrders() {
+        return repo.findAll();
     }
 }

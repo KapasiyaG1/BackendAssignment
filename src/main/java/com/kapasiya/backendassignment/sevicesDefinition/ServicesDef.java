@@ -9,4 +9,6 @@ public interface ServicesDef
     Customer addCustomer(Customer customer);
 
     List<Customer> getCustomersByShippingCity(String city);
+
+    List<Customer> getCustomersWithPurchaseOrders();
 }
